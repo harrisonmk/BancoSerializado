@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ContaDao {
+public class ContaDao implements Serializable {
 
     Scanner scan = new Scanner(System.in);
     Serelizalizar s = new Serelizalizar();
@@ -17,15 +17,15 @@ public class ContaDao {
 
     public ArrayList<Conta> adicionar(ArrayList<Conta> contas) {
 
-        System.out.print("Digite o numero da conta: ");
-        int numconta = scan.nextInt();
-        scan.nextLine(); //limpa o buffer
+        //System.out.print("Digite o numero da conta: ");
+        //int numconta = scan.nextInt();
+        //scan.nextLine(); //limpa o buffer
         System.out.print("Digite uma senha: ");
         String senha = scan.next();
         scan.nextLine(); //limpa o buffer
         Conta c = new Conta();
 
-        c.setNumero(numconta);
+        //c.setNumero(numconta);
         c.setSenha(senha);
 
         contas.add(c);
@@ -39,7 +39,7 @@ public class ContaDao {
         p.setContas(this.adicionar(contas));
 
         try {
-            s.serializar("contas.ser", contas);
+            s.serializar("contas.dat", contas);
 
         } catch (Exception ex) {
             System.err.println("Falha ao serializar ! - " + ex.toString());
@@ -194,10 +194,10 @@ public class ContaDao {
     public void deserializar(ArrayList<Conta> contas) throws FileNotFoundException {
 
         try {
-            contas = (ArrayList<Conta>) d.deserializar("contas.ser");
-            for (Conta f : contas) {
-                System.out.println(f + "\n");
-            }
+            contas = (ArrayList<Conta>) d.deserializar("contas.dat");
+            //for (Conta f : contas) {
+              //  System.out.println(f + "\n");
+            //}
         } catch (Exception ex) {
             System.err.println("Falha ou deserializar! - " + ex.toString());
         }

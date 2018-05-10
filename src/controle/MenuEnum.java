@@ -84,7 +84,6 @@ public class MenuEnum implements Serializable {
         System.out.println("6 Sacar");
         System.out.println("7 Transferencia");
         System.out.println("8 Excluir Conta");
-        System.out.println("9 para deserealizar");
         System.out.println("0 Sair.");
         System.out.print("Opcao: ");
 

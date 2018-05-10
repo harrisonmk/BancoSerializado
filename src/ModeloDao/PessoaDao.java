@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import controle.Deserealizar;
 import controle.Serelizalizar;
+import java.io.Serializable;
 
 /**
  *
  * @author Harrison
  */
-public class PessoaDao {
+public class PessoaDao implements Serializable {
 
     Scanner scan = new Scanner(System.in);
     Serelizalizar s = new Serelizalizar();
@@ -20,7 +21,7 @@ public class PessoaDao {
     String msg;
     Pessoa buscaPessoa;
 
-    public void adiciona(ArrayList<Pessoa> pessoas) throws IOException {
+    public void adiciona(ArrayList<Pessoa> pessoas) throws IOException, Exception {
 
         System.out.print("\nDigite seu nome: ");
         String nome = scan.nextLine();
@@ -33,12 +34,10 @@ public class PessoaDao {
         pessoa.setNome(nome);
         pessoa.setDate(data);
         pessoa.setCpf(cpf);
-        //pessoa.setContas(lista3);
-
         pessoas.add(pessoa);
-
+        
         try {
-            s.serializar("pessoas.ser", pessoas);
+            s.serializar("pessoas.dat", pessoas);
 
         } catch (Exception ex) {
             System.err.println("Falha ao serializar ! - " + ex.toString());
@@ -59,11 +58,11 @@ public class PessoaDao {
             if (pu.getCpf().equals(number)) {
                 k = pu;
                 System.out.println(k.obterInfo());
-                
+
                 break;
             } else {
                 k = null;
-               
+
             }
         }
 
@@ -102,36 +101,37 @@ public class PessoaDao {
                 break;
             } else {
                 buscaPessoa = null;
-                
+
             }
         }
         if (buscaPessoa == null) {
-            //System.out.println("\nCliente nao encontrado!");
+
             return null;
         } else {
             return buscaPessoa;
         }
     }
 
-    public void deserializar(ArrayList<Pessoa> pessoas) throws FileNotFoundException, Exception {
+public void deserializar(ArrayList<Pessoa> pessoas) throws FileNotFoundException, Exception {
 
         try {
-            pessoas = (ArrayList<Pessoa>) d.deserializar("pessoas.ser");
-            for (Pessoa f : pessoas) {
-                System.out.println("\n" + f.obterInfo() + "\n");
-            }
+            pessoas = (ArrayList<Pessoa>) d.deserializar("pessoas.dat");
+           // for (Pessoa f : pessoas) {
+             //   System.out.println("\n" + f.obterInfo() + "\n");
+            //}
         } catch (Exception ex) {
             System.err.println("Falha ou deserializar! - " + ex.toString());
         }
+             
+}    
 
-    }
-
-    public void mostrarpessoas(ArrayList<Pessoa> pessoas) throws FileNotFoundException {
+    public void mostrarpessoas(ArrayList<Pessoa> pessoas) throws FileNotFoundException, Exception {
 
         if (pessoas.isEmpty()) {
 
             System.out.println("\nLista Vazia");
         } else {
+
             for (Pessoa p : pessoas) {
                 System.out.println(p);
             }

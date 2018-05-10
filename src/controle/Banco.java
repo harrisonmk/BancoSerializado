@@ -22,12 +22,11 @@ public class Banco {
     ArrayList<Pessoa> lista1 = new ArrayList<>();
 
     
-    public void cadastrar() throws IOException {
+    public void cadastrar() throws IOException, Exception {
         pessoaDao.adiciona(lista1);
     }
 
     public void criarConta() {
-       // contaDao.adicionarConta(lista, lista1,pessoaDao);
        contaDao.setConta(lista, lista1, pessoaDao);
     }
 
@@ -55,6 +54,8 @@ public class Banco {
         contaDao.remover(lista);
     }
 
+    
+    
     public void salvarTxt() throws IOException, Exception{
         
         
@@ -64,7 +65,9 @@ public class Banco {
        
     }
     
-    public void mostrarPessoa() throws FileNotFoundException{
+    
+    
+    public void mostrarPessoa() throws FileNotFoundException, Exception{
         
      pessoaDao.mostrarpessoas(lista1);
      

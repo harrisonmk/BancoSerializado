@@ -15,10 +15,10 @@ public class Conta implements Serializable {
     DecimalFormat deci = new DecimalFormat("0.00");
     
     public Conta() {
-        //super.nome = nome;
+        
         this.agencia = 15;
-        //quantContas++;
-        //this.numero=quantContas;
+        quantContas++;
+        this.numero=quantContas;
         this.saldo = 0.0;
 
     }
